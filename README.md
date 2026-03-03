@@ -115,6 +115,9 @@ Experience the application in action:
                                                               │ success.html│
                                                               └─────────────┘
 ```
+===============================
+==========================
+=========================================
 🛠️ Technology Stack
 Frontend
 Technology	Purpose
@@ -123,7 +126,72 @@ JavaScript	Client-side logic
 Tailwind CSS	UI framework
 Google Charts	Data visualization
 Inter Font	Typography
-
+Backend (AWS Serverless)
+Service	Purpose
+API Gateway	REST API endpoints
+Lambda	Business logic (Python 3.9)
+DynamoDB	NoSQL database
+AppSync	GraphQL API for real-time data
+Comprehend	AI sentiment analysis
+🌐 API Endpoints
+Endpoint	Method	Purpose	Response
+/dev/	GET	Serve feedback form	HTML
+/dev/?page=app_selection	GET	Serve app selector	HTML
+/dev/dashboard?app={name}	GET	Serve dashboard	HTML
+/dev/	POST	Submit feedback	Redirect
+🎯 Supported Apps
+#	App Name	Category
+1	Samsung Health	Fitness
+2	LG Health	Fitness
+3	Huawei Health	Fitness
+4	Google Fit	Fitness
+5	Mi Fit	Fitness
+6	Teladoc Health	Telemedicine
+7	MDLIVE	Telemedicine
+8	Talkspace	Mental Health
+9	Zocdoc	Doctor Booking
+10	Mfine	Healthcare
+11	Tata 1mg	Pharmacy
+12	GOOD MED	Healthcare
+📊 Dashboard Components
+Chart Type	What It Shows
+Stacked Bar	Sentiment distribution by app
+Pie Chart	Overall sentiment ratio
+Grouped Bar	Sentiment comparison
+Donut Chart	Sentiment percentage
+📈 Performance Metrics
+Metric	Value
+API Response Time	~100-200ms
+Dashboard Updates	Every 5 seconds
+Concurrent Users	Scales automatically
+Data Storage	Unlimited (DynamoDB)
+Cold Start	~500ms (first request)
+🚀 Live Demo Steps
+Step	Action
+1️⃣	Submit feedback for any health app
+2️⃣	Click "Live Feedback Chart" button
+3️⃣	Select an app from the list
+4️⃣	Watch real-time sentiment visualizations
+🔒 Security Features
+Feature	Status
+API Gateway as secure entry point	✅
+AppSync API Key authentication	✅
+Lambda IAM roles with least privilege	✅
+CORS enabled for browser access	✅
+Input validation on form submissions	✅
+🚀 Future Enhancements
+Enhancement	Status
+Cognito authentication for secure dashboard access	⬜
+Email notifications for critical feedback	⬜
+Export data to CSV/Excel	⬜
+Date range filtering on dashboard	⬜
+Word cloud visualization of common terms	⬜
+Multi-language support	⬜
+Mobile app integration	⬜
+PDF report generation
+====================================================================
+=========================================
+=======================
 
 📁 Project Structure
 📦 health-app-feedback
