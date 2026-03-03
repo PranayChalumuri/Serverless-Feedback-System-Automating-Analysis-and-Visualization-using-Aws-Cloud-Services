@@ -6,9 +6,6 @@ A real-time feedback collection system for health applications with AI-powered s
   <a href="https://qqainv8x5m.execute-api.ap-south-1.amazonaws.com/dev/">
     <img src="https://img.shields.io/badge/LIVE-DEMO-brightgreen?style=for-the-badge&logo=aws" alt="Live Demo "/>
   </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/AWS-Serverless-orange?style=for-the-badge&logo=amazon-aws" alt="AWS Serverless"/>
-  </a>
 </p>
 
 ---
@@ -87,8 +84,6 @@ Experience the application in action:
 - Professional typography with Inter font
 
 ---
-
-## 🏗️ **Architecture**
 # 📊 Health App Feedback & Sentiment Analysis Dashboard
 
 A real-time feedback collection system for health applications with AI-powered sentiment analysis and interactive visualizations.
