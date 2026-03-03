@@ -1,3 +1,20 @@
+
+---
+
+## 🛠️ **Technology Stack**
+
+| Layer | Technologies |
+|-------|--------------|
+| **Frontend** | HTML5, CSS3, JavaScript, Tailwind CSS, Google Charts, Inter Font |
+| **Backend** | AWS Lambda (Python 3.9), API Gateway, AppSync (GraphQL) |
+| **Database** | Amazon DynamoDB |
+| **AI/ML** | Amazon Comprehend (Sentiment Analysis) |
+| **Infrastructure** | AWS Serverless (No servers to manage!) |
+
+---
+
+## 📁 **Project Structure**
+
 # 📊 Health App Feedback & Sentiment Analysis Dashboard
 
 A real-time feedback collection and sentiment analysis system for health and wellness applications. Users can submit feedback about various health apps, and the system automatically analyzes sentiment using AWS AI services, displaying results in an interactive dashboard.
