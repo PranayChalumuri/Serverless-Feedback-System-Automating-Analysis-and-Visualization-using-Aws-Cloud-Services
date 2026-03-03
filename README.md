@@ -15,29 +15,27 @@ A real-time feedback collection system for health applications with AI-powered s
 A fully serverless web application that collects user feedback for health applications, performs real-time sentiment analysis using AWS AI services, and displays interactive visualizations through a dynamic dashboard.
 
 ---
-
 ## 🖼️ **Screenshots**
 
 ### 📝 User Feedback Interface
 *Clean, modern form for collecting user feedback*
 
-![User Interface](./User_Interface.png)
+![User Interface](./screenshots/User_Interface.png)
 
 ### 📱 App Selection Page
 *Select specific health apps for detailed analysis*
 
-![App Selection](./App_Selection.png)
+![App Selection](./screenshots/App_Selection.png)
 
 ### 📊 Real-Time Dashboard
 *Interactive charts showing sentiment distribution*
 
-![Real-Time Dashboard](./Real_Time_Dashboard.png)
+![Real-Time Dashboard](./screenshots/Real_Time_Dashboard.png)
 
 ### ✅ Thank You Response
 *Confirmation page after feedback submission*
 
-![Thank You Response](./Thankyou_response.png)
-
+![Thank You Response](./screenshots/Thankyou_response.png)
 ---
 
 ## 🚀 **Live Demo**
