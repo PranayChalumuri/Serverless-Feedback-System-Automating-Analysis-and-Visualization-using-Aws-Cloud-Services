@@ -21,22 +21,22 @@ A fully serverless web application that collects user feedback for health applic
 ### 📝 User Feedback Interface
 *Clean, modern form for collecting user feedback*
 
-![User Interface](./User_Interface.png.png)
+![User Interface](./User_Interface.png)
 
 ### 📱 App Selection Page
 *Select specific health apps for detailed analysis*
 
-![App Selection](./App_Selection.png.png)
+![App Selection](./App_Selection.png)
 
 ### 📊 Real-Time Dashboard
 *Interactive charts showing sentiment distribution*
 
-![Real-Time Dashboard](./Real_Time_Dashboard.png.png)
+![Real-Time Dashboard](./Real_Time_Dashboard.png)
 
 ### ✅ Thank You Response
 *Confirmation page after feedback submission*
 
-![Thank You Response](./Thankyou_response.png.png)
+![Thank You Response](./Thankyou_response.png)
 
 ---
 
