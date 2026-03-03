@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App Sentiment Dashboard</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .chart-container { background: white; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="p-6">
+    <!-- Header (same as before) -->
+    <div class="max-w-7xl mx-auto mb-6">
+        <div class="bg-white rounded-2xl shadow-lg p-6 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <button onclick="window.location.href='https://qqainv8x5m.execute-api.ap-south-1.amazonaws.com/dev?page=app_selection'" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium transition flex items-center">
+                    ← Back to Apps
+                </button>
+                <h1 class="text-2xl font-bold text-gray-800">
+                    Dashboard: <span id="app-name-display" class="text-blue-600"></span>
+                </h1>
+            </div>
+            <div class="text-sm text-gray-500">
+                <span id="last-updated">Updating every 5 seconds...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- KPI Cards (same as before) -->
+    <div class="max-w-7xl mx-auto mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-white rounded-xl shadow p-6">
+                <p class="text-sm text-gray-500 mb-1">Total Feedback</p>
+                <p class="text-3xl font-bold text-gray-800" id="total-feedback">0</p>
+            </div>
+            <div class="bg-white rounded-xl shadow p-6">
+                <p class="text-sm text-gray-500 mb-1">Positive</p>
+                <p class="text-3xl font-bold text-green-600" id="positive-count">0</p>
+            </div>
+            <div class="bg-white rounded-xl shadow p-6">
+                <p class="text-sm text-gray-500 mb-1">Negative</p>
+                <p class="text-3xl font-bold text-red-600" id="negative-count">0</p>
+            </div>
+            <div class="bg-white rounded-xl shadow p-6">
+                <p class="text-sm text-gray-500 mb-1">Mixed</p>
+                <p class="text-3xl font-bold text-yellow-600" id="mixed-count">0</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Grid (same as before) -->
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="chart-container">
+                <h2 class="text-lg font-semibold text-gray-700 mb-4">Sentiment Distribution</h2>
+                <div id="chart_stacked" style="width: 100%; height: 300px;"></div>
+            </div>
+            <div class="chart-container">
+                <h2 class="text-lg font-semibold text-gray-700 mb-4">Sentiment Ratio</h2>
+                <div id="chart_pie" style="width: 100%; height: 300px;"></div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="chart-container">
+                <h2 class="text-lg font-semibold text-gray-700 mb-4">Sentiment Comparison</h2>
+                <div id="chart_grouped" style="width: 100%; height: 300px;"></div>
+            </div>
+            <div class="chart-container">
+                <h2 class="text-lg font-semibold text-gray-700 mb-4">Sentiment Percentage</h2>
+                <div id="chart_donut" style="width: 100%; height: 300px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get app name from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const appName = urlParams.get('app');
+        
+        if (appName) {
+            document.getElementById('app-name-display').textContent = appName;
+        }
+
+        // Load Google Charts
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(function() {
+            if (appName) {
+                fetchSentiments();
+                // Update every 5 seconds for real-time feel
+                setInterval(fetchSentiments, 5000);
+            }
+        });
+
+        async function fetchSentiments() {
+            // DIRECT APPSYNC CALL - Just like your old working code!
+            const appsyncUrl = 'https://xzeajhrezvecvohp3h52ing6i4.appsync-api.ap-south-1.amazonaws.com/graphql';
+            const apiKey = 'da2-4mcqhrw4dzg3fat3djp5up7ksy';
+            
+            const query = `
+                query GetSentiments {
+                    getSentiments {
+                        appName
+                        sentiment
+                    }
+                }
+            `;
+
+            try {
+                const response = await fetch(appsyncUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': apiKey
+                    },
+                    body: JSON.stringify({ query })
+                });
+
+                const result = await response.json();
+                const sentiments = result.data.getSentiments;
+                
+                // Filter for selected app
+                const appSentiments = sentiments.filter(s => s.appName === appName);
+                
+                // Calculate counts
+                const counts = {
+                    POSITIVE: appSentiments.filter(s => s.sentiment === 'POSITIVE').length,
+                    NEGATIVE: appSentiments.filter(s => s.sentiment === 'NEGATIVE').length,
+                    MIXED: appSentiments.filter(s => s.sentiment === 'MIXED').length,
+                    NEUTRAL: appSentiments.filter(s => s.sentiment === 'NEUTRAL').length
+                };
+
+                // Update UI
+                document.getElementById('total-feedback').textContent = appSentiments.length;
+                document.getElementById('positive-count').textContent = counts.POSITIVE;
+                document.getElementById('negative-count').textContent = counts.NEGATIVE;
+                document.getElementById('mixed-count').textContent = counts.MIXED;
+                
+                drawCharts(counts);
+                document.getElementById('last-updated').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function drawCharts(counts) {
+            try {
+                // Stacked Bar Chart
+                var stackedData = google.visualization.arrayToDataTable([
+                    ['Sentiment Type', 'Count'],
+                    ['POSITIVE', counts.POSITIVE],
+                    ['NEGATIVE', counts.NEGATIVE],
+                    ['MIXED', counts.MIXED],
+                    ['NEUTRAL', counts.NEUTRAL]
+                ]);
+
+                var stackedOptions = {
+                    title: `${appName} - Sentiment Breakdown`,
+                    isStacked: true,
+                    hAxis: { title: 'Sentiment' },
+                    vAxis: { title: 'Count' },
+                    colors: ['#4CAF50', '#F44336', '#FF9800', '#9E9E9E'],
+                    legend: { position: 'none' }
+                };
+
+                var stackedChart = new google.visualization.ColumnChart(document.getElementById('chart_stacked'));
+                stackedChart.draw(stackedData, stackedOptions);
+
+                // Pie Chart
+                var pieData = google.visualization.arrayToDataTable([
+                    ['Sentiment', 'Count'],
+                    ['POSITIVE', counts.POSITIVE],
+                    ['NEGATIVE', counts.NEGATIVE],
+                    ['MIXED', counts.MIXED],
+                    ['NEUTRAL', counts.NEUTRAL]
+                ]);
+
+                var pieOptions = {
+                    title: `${appName} - Sentiment Ratio`,
+                    colors: ['#4CAF50', '#F44336', '#FF9800', '#9E9E9E'],
+                    pieHole: 0,
+                    legend: { position: 'bottom' }
+                };
+
+                var pieChart = new google.visualization.PieChart(document.getElementById('chart_pie'));
+                pieChart.draw(pieData, pieOptions);
+
+                // Grouped Bar Chart
+                var groupedData = google.visualization.arrayToDataTable([
+                    ['Metric', 'Count'],
+                    ['POSITIVE', counts.POSITIVE],
+                    ['NEGATIVE', counts.NEGATIVE],
+                    ['MIXED', counts.MIXED],
+                    ['NEUTRAL', counts.NEUTRAL]
+                ]);
+
+                var groupedOptions = {
+                    title: `${appName} - Sentiment Comparison`,
+                    bars: 'horizontal',
+                    colors: ['#2196F3'],
+                    legend: { position: 'none' }
+                };
+
+                var groupedChart = new google.visualization.BarChart(document.getElementById('chart_grouped'));
+                groupedChart.draw(groupedData, groupedOptions);
+
+                // Donut Chart
+                var donutData = google.visualization.arrayToDataTable([
+                    ['Sentiment', 'Count'],
+                    ['POSITIVE', counts.POSITIVE],
+                    ['NEGATIVE', counts.NEGATIVE],
+                    ['MIXED', counts.MIXED],
+                    ['NEUTRAL', counts.NEUTRAL]
+                ]);
+
+                var donutOptions = {
+                    title: `${appName} - Sentiment Distribution`,
+                    colors: ['#4CAF50', '#F44336', '#FF9800', '#9E9E9E'],
+                    pieHole: 0.4,
+                    legend: { position: 'bottom' }
+                };
+
+                var donutChart = new google.visualization.PieChart(document.getElementById('chart_donut'));
+                donutChart.draw(donutData, donutOptions);
+
+            } catch (error) {
+                console.error('Error drawing charts:', error);
+            }
+        }
+    </script>
+</body>
+</html>
