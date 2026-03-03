@@ -4,13 +4,10 @@ A real-time feedback collection system for health applications with AI-powered s
 
 <p align="center">
   <a href="https://qqainv8x5m.execute-api.ap-south-1.amazonaws.com/dev/">
-    <img src="https://img.shields.io/badge/LIVE-DEMO-brightgreen?style=for-the-badge&logo=aws" alt="Live Demo"/>
+    <img src="https://img.shields.io/badge/LIVE-DEMO-brightgreen?style=for-the-badge&logo=aws" alt="Live Demo "/>
   </a>
   <a href="#">
     <img src="https://img.shields.io/badge/AWS-Serverless-orange?style=for-the-badge&logo=amazon-aws" alt="AWS Serverless"/>
-  </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/Python-3.9-blue?style=for-the-badge&logo=python" alt="Python 3.9"/>
   </a>
 </p>
 
