@@ -4,7 +4,7 @@ A real-time feedback collection system for health applications with AI-powered s
 
 <p align="center">
   <a href="https://qqainv8x5m.execute-api.ap-south-1.amazonaws.com/dev/">
-    <img src="https://img.shields.io/badge/LIVE-DEMO-brightgreen?style=for-the-badge&logo=aws" alt="Live Demo "/>
+    <img src="https://img.shields.io/badge/LIVE-DEMO-brightgreen?style=for-the-badge&logo=aws" alt="Live Demo"/>
   </a>
 </p>
 
@@ -15,6 +15,7 @@ A real-time feedback collection system for health applications with AI-powered s
 A fully serverless web application that collects user feedback for health applications, performs real-time sentiment analysis using AWS AI services, and displays interactive visualizations through a dynamic dashboard.
 
 ---
+
 ## 🖼️ **Screenshots**
 
 ### 📝 User Feedback Interface
@@ -36,6 +37,7 @@ A fully serverless web application that collects user feedback for health applic
 *Confirmation page after feedback submission*
 
 ![Thank You Response](./screenshots/Thankyou_response.png)
+
 ---
 
 ## 🚀 **Live Demo**
@@ -68,6 +70,7 @@ Experience the application in action:
 - 95%+ accuracy in sentiment detection
 
 ### 📈 **Interactive Dashboard**
+
 | Chart Type | Purpose |
 |------------|---------|
 | 📊 **Stacked Bar Chart** | Sentiment distribution by app |
@@ -84,6 +87,7 @@ Experience the application in action:
 ---
 
 ## 🏗️ **Architecture**
+
 ```ascii
 ┌─────────┐                    ┌─────────┐                    ┌─────────┐
 │ FEEDBACK│───────POST────────▶│   API   │────invoke─────────▶│ LAMBDA  │
@@ -111,151 +115,65 @@ Experience the application in action:
                                                               │ success.html│
                                                               └─────────────┘
 ```
-## 🛠️ Technology Stack
+🛠️ Technology Stack
+Frontend
+Technology	Purpose
+HTML5/CSS3	Structure and styling
+JavaScript	Client-side logic
+Tailwind CSS	UI framework
+Google Charts	Data visualization
+Inter Font	Typography
+Backend (AWS Serverless)
+Service	Purpose
+API Gateway	REST API endpoints
+Lambda	Business logic (Python 3.9)
+DynamoDB	NoSQL database
+AppSync	GraphQL API for real-time data
+Comprehend	AI sentiment analysis
 
-### Frontend
-| Technology | Purpose |
-|------------|---------|
-| HTML5/CSS3 | Structure and styling |
-| JavaScript | Client-side logic |
-| Tailwind CSS | UI framework |
-| Google Charts | Data visualization |
-| Inter Font | Typography |
 
-### Backend (AWS Serverless)
-| Service | Purpose |
-|---------|---------|
-| API Gateway | REST API endpoints |
-| Lambda | Business logic (Python 3.9) |
-| DynamoDB | NoSQL database |
-| AppSync | GraphQL API for real-time data |
-| Comprehend | AI sentiment analysis |
-| S3 | Static file hosting |
-
----
-
-## 📁 Project Structure
+📁 Project Structure
+text
 📦 health-app-feedback
-├── 📄 lambda_function.py # Main Lambda function (Python)
-├── 📄 contactus.html # Feedback submission form
-├── 📄 app_selection.html # App selector page
-├── 📄 success.html # Dashboard with charts
-├── 📄 lasting.html # Thank you page
-└── 📄 README.md # Project documentation
+├── 📄 lambda_function.py      # Main Lambda function (Python)
+├── 📄 contactus.html          # Feedback submission form
+├── 📄 app_selection.html      # App selector page
+├── 📄 success.html            # Dashboard with charts
+├── 📄 lasting.html            # Thank you page
+├── 📁 screenshots/            # Project images
+└── 📄 README.md               # Project documentation
 
----
 
-## 🔄 Data Flow
+🔄 Data Flow
+User Submits Feedback
 
-### User Submits Feedback
 User fills form → API Gateway POST → Lambda
-
 Lambda calls Comprehend for sentiment analysis
-
 Data stored in DynamoDB
-
 User redirected to thank you page
+Dashboard Displays Data
 
-
-### Dashboard Displays Data
 User selects app → Dashboard loads
-
 Dashboard calls AppSync directly every 5 seconds
-
 AppSync queries DynamoDB for latest data
-
 Google Charts render visualizations
-
 KPI cards update in real-time
 
----
-
-## 🚀 Deployment Guide
-
-### Prerequisites
-- AWS Account
-- AWS CLI configured (optional)
-- Python 3.9+ for local testing
-
-### AWS Services Setup
-
-#### 1. DynamoDB Table
-| Property | Value |
-|----------|-------|
-| Table Name | `pranaybuklist3` |
-| Primary Key | `email` (String) |
-
-#### 2. AppSync API
-| Property | Value |
-|----------|-------|
-| API Name | "My AppSync API" |
-| Authentication | API Key |
-| Schema | Includes `getSentiments` query |
-| Data Source | DynamoDB table |
-
-#### 3. Lambda Function
-| Property | Value |
-|----------|-------|
-| Runtime | Python 3.9 |
-| Handler | `lambda_function.lambda_handler` |
-| Permissions | DynamoDB, Comprehend, AppSync |
-
-#### 4. API Gateway
-| Resource | Method | Purpose |
-|----------|--------|---------|
-| `/dev/` | GET | Serve contact form |
-| `/dev/?page=app_selection` | GET | Serve app selector |
-| `/dev/dashboard` | GET | Serve dashboard page |
-| `/dev/` | POST | Submit feedback |
-
 🌐 API Endpoints
-Endpoint	Method	Purpose	Response
-/dev/	GET	Serve feedback form	HTML
-/dev/?page=app_selection	GET	Serve app selector	HTML
-/dev/dashboard?app={name}	GET	Serve dashboard	HTML
-/dev/	POST	Submit feedback	Redirect
+Endpoint                  |	Method |	Purpose |	Response            |
+/dev/	                    |GET	   |Serve     |feedback form	HTML
+/dev/?page=app_selection	|GET	   |Serve     |app selector	HTML
+/dev/dashboard?app={name}	|GET	   |Serve     |dashboard	HTML
+/dev/	                    |POST	   |Submit    |feedback	Redirect
 
-🎯 Supported Apps
-#	App Name	Category 
-1	Samsung Health	Fitness
-2	LG Health	Fitness
-3	Huawei Health	Fitness
-4	Google Fit	Fitness
-5	Mi Fit	Fitness
-6	Teladoc Health	Telemedicine
-7	MDLIVE	Telemedicine
-8	Talkspace	Mental Health
-9	Zocdoc	Doctor Booking
-10	Mfine	Healthcare
-11	Tata 1mg	Pharmacy
-12	GOOD MED	Healthcare
-
-📊 Dashboard Components
-KPI Cards
-
-Total Feedback - Overall count
-
-Positive - Green card
-
-Negative - Red card
-
-Mixed - Yellow card
-
-Charts
-Chart Type	What It Shows
-Stacked Bar	Sentiment distribution by app
-Pie Chart	Overall sentiment ratio
-Grouped Bar	Sentiment comparison
-Donut Chart	Sentiment percentage
-------------------------------------------------------------------------------------------
 📈 Performance Metrics
-Metric	Value
-API Response Time	~100-200ms
-Dashboard Updates	Every 5 seconds
-Concurrent Users	Scales automatically
-Data Storage	Unlimited (DynamoDB)
-Cold Start	~500ms (first request)
--------------------------------------------------------------------------------------------
+Metric	       |          Value
+API Response Time	  --->    ~100-200ms
+Dashboard           --->  Updates	Every 5 seconds
+Concurrent Users	  --->  Scales automatically
+Data Storage	      --->  Unlimited (DynamoDB)
+Cold Start	        ---> ~500ms (first request)
+
 🔒 Security Features
 ✅ API Gateway as secure entry point
 
@@ -266,21 +184,7 @@ Cold Start	~500ms (first request)
 ✅ CORS enabled for browser access
 
 ✅ Input validation on form submissions
-----------------------------------------------------------------------------------------------
-🧪 Testing
-Local Testing
-bash
-# Test HTML files locally
-open contactus.html  # or double-click in file explorer
-API Testing
-bash
-# Test AppSync query
-```
-curl -X POST https://your-appsync-url/graphql \
-  -H "x-api-key: your-api-key" \
-  -d '{"query":"query { getSentiments { appName sentiment } }"}'
-```
-----------------------------------------------------------------------------
+---------------------------------
 🚀 Future Enhancements
 Cognito authentication for secure dashboard access
 
@@ -297,8 +201,7 @@ Multi-language support
 Mobile app integration
 
 PDF report generation
-
----------------------------------------------------------------------
+----------------------------------
 👏 Acknowledgments
 AWS for serverless services
 
@@ -309,14 +212,10 @@ Tailwind CSS for styling framework
 All contributors who helped test and improve
 
 📞 Contact
-For questions or support:  +917093274782
-
-GitHub Issues: Open an issue in this repository
+Phone: +91 7093274782
 
 Email: chalumuripranaykumar@gmail.com
 
-Built with ❤️ using AWS Serverless Technologies
+GitHub Issues: Open an issue in this repository
 
-Thank You
----
 
