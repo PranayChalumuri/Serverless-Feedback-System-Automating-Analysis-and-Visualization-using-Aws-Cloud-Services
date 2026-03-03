@@ -85,7 +85,7 @@ Experience the application in action:
 
 ## 🏗️ **Architecture**
 
-
+![Archiecture of the project](./screenshots/Architecture.png)
 
 ## 🛠️ Technology Stack
 
