@@ -224,15 +224,17 @@ aws lambda update-function-code \
   --zip-file fileb://deployment.zip
 
 # 4. Deploy API Gateway changes (via AWS Console)
+```
+
 🌐 API Endpoints
 Endpoint	Method	Purpose	Response
 /dev/	GET	Serve feedback form	HTML
 /dev/?page=app_selection	GET	Serve app selector	HTML
 /dev/dashboard?app={name}	GET	Serve dashboard	HTML
 /dev/	POST	Submit feedback	Redirect
-```
+
 🎯 Supported Apps
-#	App Name	Category
+#	App Name	Category 
 1	Samsung Health	Fitness
 2	LG Health	Fitness
 3	Huawei Health	Fitness
@@ -248,6 +250,7 @@ Endpoint	Method	Purpose	Response
 
 📊 Dashboard Components
 KPI Cards
+
 Total Feedback - Overall count
 
 Positive - Green card
@@ -262,7 +265,7 @@ Stacked Bar	Sentiment distribution by app
 Pie Chart	Overall sentiment ratio
 Grouped Bar	Sentiment comparison
 Donut Chart	Sentiment percentage
-
+------------------------------------------------------------------------------------------
 🔒 Security Features
 ✅ API Gateway as secure entry point
 
@@ -273,7 +276,7 @@ Donut Chart	Sentiment percentage
 ✅ CORS enabled for browser access
 
 ✅ Input validation on form submissions
-
+----------------------------------------------------------------------------------------------
 🧪 Testing
 Local Testing
 bash
@@ -285,30 +288,7 @@ bash
 curl -X POST https://your-appsync-url/graphql \
   -H "x-api-key: your-api-key" \
   -d '{"query":"query { getSentiments { appName sentiment } }"}'
-  
-🎨 Customization Guide
-Add New Apps
-Edit the dropdown in contactus.html and app_selection.html:
-
-html
-<option value="New App">New App</option>
-Modify Chart Colors
-In success.html, update the colors array:
-
-javascript
-colors: ['#4CAF50', '#F44336', '#FF9800', '#9E9E9E']
-Change Update Interval
-javascript
-setInterval(fetchSentiments, 5000); // Change to desired ms
-
-🐛 Troubleshooting
-Issue	Solution
-403 errors on dashboard	Check AppSync API key validity
-No data in charts	Verify DynamoDB has records for selected app
-Form submission fails	Check Lambda CloudWatch logs
-CORS errors	Ensure API Gateway has CORS enabled
-Charts not loading	Verify Google Charts script is loading
-
+----------------------------------------------------------------------------
 🚀 Future Enhancements
 Cognito authentication for secure dashboard access
 
@@ -326,7 +306,7 @@ Mobile app integration
 
 PDF report generation
 
-
+---------------------------------------------------------------------
 👏 Acknowledgments
 AWS for serverless services
 
