@@ -123,17 +123,9 @@ JavaScript	Client-side logic
 Tailwind CSS	UI framework
 Google Charts	Data visualization
 Inter Font	Typography
-Backend (AWS Serverless)
-Service	Purpose
-API Gateway	REST API endpoints
-Lambda	Business logic (Python 3.9)
-DynamoDB	NoSQL database
-AppSync	GraphQL API for real-time data
-Comprehend	AI sentiment analysis
 
 
 📁 Project Structure
-text
 📦 health-app-feedback
 ├── 📄 lambda_function.py      # Main Lambda function (Python)
 ├── 📄 contactus.html          # Feedback submission form
