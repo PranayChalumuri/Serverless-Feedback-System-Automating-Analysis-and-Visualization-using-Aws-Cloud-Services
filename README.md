@@ -85,7 +85,29 @@ Experience the application in action:
 
 ## 🏗️ **Architecture**
 
-![Archiecture of the project](./screenshots/Architecture.png)
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Browser   │────▶│ API Gateway │────▶│   Lambda    │
+│  (User)     │     │             │     │  Function   │
+└─────────────┘     └─────────────┘     └──────┬──────┘
+                                                │
+                    ┌───────────────────────────┼───────────────────────────┐
+                    ▼                           ▼                           ▼
+            ┌───────────────┐           ┌───────────────┐           ┌───────────────┐
+            │   Comprehend  │           │   DynamoDB    │           │  Static HTML  │
+            │(Sentiment AI) │           │   Database    │           │    Pages      │
+            └───────────────┘           └───────┬───────┘           └───────────────┘
+                                                │
+                                                ▼
+                                        ┌───────────────┐
+                                        │   AppSync     │
+                                        │  GraphQL API  │
+                                        └───────┬───────┘
+                                                │
+                                                ▼
+                                        ┌───────────────┐
+                                        │   Dashboard   │
+                                        │    Charts     │
+                                        └───────────────┘
 
 ## 🛠️ Technology Stack
 
