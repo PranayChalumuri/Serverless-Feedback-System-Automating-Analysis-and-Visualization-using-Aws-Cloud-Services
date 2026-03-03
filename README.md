@@ -110,7 +110,7 @@ Experience the application in action:
                                                               │   CHARTS    │
                                                               │ success.html│
                                                               └─────────────┘
-
+```
 ## 🛠️ Technology Stack
 
 ### Frontend
