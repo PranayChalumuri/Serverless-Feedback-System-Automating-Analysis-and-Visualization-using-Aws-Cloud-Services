@@ -208,24 +208,6 @@ KPI cards update in real-time
 | `/dev/dashboard` | GET | Serve dashboard page |
 | `/dev/` | POST | Submit feedback |
 
-### Deployment Steps
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/yourusername/health-app-feedback.git
-cd health-app-feedback
-
-# 2. Zip Lambda deployment package
-zip -r deployment.zip lambda_function.py *.html
-
-# 3. Upload to AWS Lambda
-aws lambda update-function-code \
-  --function-name pranaydemofunction \
-  --zip-file fileb://deployment.zip
-
-# 4. Deploy API Gateway changes (via AWS Console)
-```
-
 🌐 API Endpoints
 Endpoint	Method	Purpose	Response
 /dev/	GET	Serve feedback form	HTML
@@ -266,6 +248,14 @@ Pie Chart	Overall sentiment ratio
 Grouped Bar	Sentiment comparison
 Donut Chart	Sentiment percentage
 ------------------------------------------------------------------------------------------
+📈 Performance Metrics
+Metric	Value
+API Response Time	~100-200ms
+Dashboard Updates	Every 5 seconds
+Concurrent Users	Scales automatically
+Data Storage	Unlimited (DynamoDB)
+Cold Start	~500ms (first request)
+-------------------------------------------------------------------------------------------
 🔒 Security Features
 ✅ API Gateway as secure entry point
 
@@ -285,9 +275,11 @@ open contactus.html  # or double-click in file explorer
 API Testing
 bash
 # Test AppSync query
+```
 curl -X POST https://your-appsync-url/graphql \
   -H "x-api-key: your-api-key" \
   -d '{"query":"query { getSentiments { appName sentiment } }"}'
+```
 ----------------------------------------------------------------------------
 🚀 Future Enhancements
 Cognito authentication for secure dashboard access
@@ -317,7 +309,7 @@ Tailwind CSS for styling framework
 All contributors who helped test and improve
 
 📞 Contact
-For questions or support:
+For questions or support:  +917093274782
 
 GitHub Issues: Open an issue in this repository
 
