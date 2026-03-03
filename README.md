@@ -84,24 +84,24 @@ Experience the application in action:
 ---
 
 ## 🏗️ **Architecture**
-┌─────────────────┐ ┌──────────────┐ ┌─────────────────┐
-│ Contact Form │────▶│ API │────▶│ Lambda │
-│ (HTML/CSS) │ │ Gateway │ │ Function │
-└─────────────────┘ └──────────────┘ └────────┬────────┘
-│
-┌───────────────────┼───────────────────┐
-▼ ▼ ▼
-┌───────────────┐ ┌───────────────┐ ┌───────────────┐
-│ Comprehend │ │ DynamoDB │ │ AppSync │
-│(Sentiment AI) │ │ Database │ │ GraphQL API │
-└───────────────┘ └───────────────┘ └───────┬───────┘
-│
-┌──────────────────────────────────────┘
-▼
-┌───────────────┐
-│ Dashboard │
-│ (success.html)│
-└───────────────┘
+graph TD
+    A[User Browser] --> B[API Gateway]
+    B --> C[Lambda Function]
+    C --> D[Amazon Comprehend<br/>Sentiment Analysis]
+    C --> E[(Amazon DynamoDB)]
+    E --> F[AWS AppSync<br/>GraphQL API]
+    F --> G[Dashboard<br/>Google Charts]
+    
+    B --> H[Static HTML Pages<br/>contactus.html<br/>app_selection.html<br/>success.html<br/>lasting.html]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#ff9900,stroke:#333,stroke-width:2px
+    style C fill:#ff9900,stroke:#333,stroke-width:2px
+    style D fill:#9d4bff,stroke:#333,stroke-width:2px
+    style E fill:#4053d6,stroke:#333,stroke-width:2px
+    style F fill:#ff9900,stroke:#333,stroke-width:2px
+    style G fill:#34a853,stroke:#333,stroke-width:2px
+    style H fill:#34a853,stroke:#333,stroke-width:2px
 
 
 ## 🛠️ Technology Stack
