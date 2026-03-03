@@ -230,6 +230,7 @@ Endpoint	Method	Purpose	Response
 /dev/?page=app_selection	GET	Serve app selector	HTML
 /dev/dashboard?app={name}	GET	Serve dashboard	HTML
 /dev/	POST	Submit feedback	Redirect
+```
 🎯 Supported Apps
 #	App Name	Category
 1	Samsung Health	Fitness
@@ -244,6 +245,7 @@ Endpoint	Method	Purpose	Response
 10	Mfine	Healthcare
 11	Tata 1mg	Pharmacy
 12	GOOD MED	Healthcare
+
 📊 Dashboard Components
 KPI Cards
 Total Feedback - Overall count
@@ -260,6 +262,7 @@ Stacked Bar	Sentiment distribution by app
 Pie Chart	Overall sentiment ratio
 Grouped Bar	Sentiment comparison
 Donut Chart	Sentiment percentage
+
 🔒 Security Features
 ✅ API Gateway as secure entry point
 
@@ -282,6 +285,7 @@ bash
 curl -X POST https://your-appsync-url/graphql \
   -H "x-api-key: your-api-key" \
   -d '{"query":"query { getSentiments { appName sentiment } }"}'
+  
 🎨 Customization Guide
 Add New Apps
 Edit the dropdown in contactus.html and app_selection.html:
@@ -296,6 +300,7 @@ colors: ['#4CAF50', '#F44336', '#FF9800', '#9E9E9E']
 Change Update Interval
 javascript
 setInterval(fetchSentiments, 5000); // Change to desired ms
+
 🐛 Troubleshooting
 Issue	Solution
 403 errors on dashboard	Check AppSync API key validity
@@ -303,6 +308,7 @@ No data in charts	Verify DynamoDB has records for selected app
 Form submission fails	Check Lambda CloudWatch logs
 CORS errors	Ensure API Gateway has CORS enabled
 Charts not loading	Verify Google Charts script is loading
+
 🚀 Future Enhancements
 Cognito authentication for secure dashboard access
 
@@ -320,8 +326,6 @@ Mobile app integration
 
 PDF report generation
 
-📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 👏 Acknowledgments
 AWS for serverless services
