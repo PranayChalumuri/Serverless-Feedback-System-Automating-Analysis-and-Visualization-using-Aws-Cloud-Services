@@ -1,19 +1,98 @@
+# 📊 Health App Feedback & Sentiment Analysis Dashboard
+
+A real-time feedback collection system for health applications with AI-powered sentiment analysis and interactive visualizations.
+
+<p align="center">
+  <a href="https://qqainv8x5m.execute-api.ap-south-1.amazonaws.com/dev/">
+    <img src="https://img.shields.io/badge/LIVE-DEMO-brightgreen?style=for-the-badge&logo=aws" alt="Live Demo"/>
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/AWS-Serverless-orange?style=for-the-badge&logo=amazon-aws" alt="AWS Serverless"/>
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Python-3.9-blue?style=for-the-badge&logo=python" alt="Python 3.9"/>
+  </a>
+</p>
 
 ---
 
-## 🛠️ **Technology Stack**
+## 🎯 **Project Overview**
 
-| Layer | Technologies |
-|-------|--------------|
-| **Frontend** | HTML5, CSS3, JavaScript, Tailwind CSS, Google Charts, Inter Font |
-| **Backend** | AWS Lambda (Python 3.9), API Gateway, AppSync (GraphQL) |
-| **Database** | Amazon DynamoDB |
-| **AI/ML** | Amazon Comprehend (Sentiment Analysis) |
-| **Infrastructure** | AWS Serverless (No servers to manage!) |
+A fully serverless web application that collects user feedback for health applications, performs real-time sentiment analysis using AWS AI services, and displays interactive visualizations through a dynamic dashboard.
 
 ---
 
-## 📁 **Project Structure**
+## 🖼️ **Screenshots**
+
+### 📝 User Feedback Interface
+*Clean, modern form for collecting user feedback*
+
+![User Interface](./User_Interface.png.png)
+
+### 📱 App Selection Page
+*Select specific health apps for detailed analysis*
+
+![App Selection](./App_Selection.png.png)
+
+### 📊 Real-Time Dashboard
+*Interactive charts showing sentiment distribution*
+
+![Real-Time Dashboard](./Real_Time_Dashboard.png.png)
+
+### ✅ Thank You Response
+*Confirmation page after feedback submission*
+
+![Thank You Response](./Thankyou_response.png.png)
+
+---
+
+## 🚀 **Live Demo**
+
+Experience the application in action:
+
+👉 **[Launch Live Application](https://qqainv8x5m.execute-api.ap-south-1.amazonaws.com/dev/)**
+
+| Step | Action |
+|------|--------|
+| 1️⃣ | Submit feedback for any health app |
+| 2️⃣ | Click "Live Feedback Chart" button |
+| 3️⃣ | Select an app from the list |
+| 4️⃣ | Watch real-time sentiment visualizations |
+
+---
+
+## ✨ **Key Features**
+
+### 📝 **Feedback Collection**
+- User-friendly form with app selection dropdown
+- Support for **12+ health applications**
+- Email validation and required field checks
+- Real-time submission processing
+
+### 🤖 **AI Sentiment Analysis**
+- **AWS Comprehend** analyzes feedback text
+- Detects: `POSITIVE`, `NEGATIVE`, `MIXED`, `NEUTRAL`
+- Instant processing upon form submission
+- 95%+ accuracy in sentiment detection
+
+### 📈 **Interactive Dashboard**
+| Chart Type | Purpose |
+|------------|---------|
+| 📊 **Stacked Bar Chart** | Sentiment distribution by app |
+| 🥧 **Pie Chart** | Overall sentiment ratio |
+| 📋 **Grouped Bar Chart** | Side-by-side sentiment comparison |
+| 🍩 **Donut Chart** | Sentiment percentage visualization |
+
+### 🎨 **Modern UI/UX**
+- Gradient backgrounds and smooth animations
+- Mobile-responsive design
+- Real-time updates every 5 seconds
+- Professional typography with Inter font
+
+---
+
+## 🏗️ **Architecture**
+
 
 # 📊 Health App Feedback & Sentiment Analysis Dashboard
 
